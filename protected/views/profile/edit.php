@@ -1,7 +1,7 @@
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'user-edit-form',
+        'id' => 'profile-edit-form',
         'enableClientValidation' => true,
         'enableAjaxValidation' => true,
         'clientOptions' => array(

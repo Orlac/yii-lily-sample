@@ -8,5 +8,21 @@ return array(
 	// application components
 	'components'=>array(
 		'db'=>require( dirname(__FILE__).'/db.php'),
+//        'db2' => array(
+//            'class' => 'CDbConnection',
+//            'connectionString' => 'mysql:host=localhost;dbname=lily_sample',
+//            'emulatePrepare' => true,
+//            'username' => 'lily_sample',
+//            'password' => 'abcdef',
+//            'charset' => 'utf8',
+//            'tablePrefix' => 'tbl_',
+//        ),
 	),
+    'commandMap' => array(
+        'dbinstall' => array(
+            'class' => 'application.commands.DbInstall',
+//            'connectionIds' => array('db', 'db2')
+        ),
+    ),
+
 );

@@ -1,6 +1,6 @@
 <?php
 /**
- * ProfileController class file.
+ * TagController class file.
  *
  * @author George Agapov <george.agapov@gmail.com>
  * @link https://github.com/georgeee/yii-lily-sample
@@ -8,13 +8,13 @@
  */
 
 /**
- * ProfileController is a controller class.
- * It sprovides interface for user profile editing.
+ * TagController is a controller class.
+ * It sprovides interface for user tags editing.
  *
  * @package application.controllers
  */
 
-class ProfileController extends Controller {
+class TagController extends Controller {
 
     /**
      * Declares filters for the controller
@@ -65,37 +65,25 @@ class ProfileController extends Controller {
      */
     public function actionEdit() {
         $uid = Yii::app()->request->getParam('uid', Yii::app()->user->id);
-        $model = Profile::model()->findByAttributes(array('uid' => $uid));
-        if (!isset($model)) {
-            $model = new Profile;
-            $model->uid = $uid;
-        }
-        if (isset($_POST['ajax']) && $_POST['ajax'] == 'profile-edit-form') {
+        $model = new TagForm;
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] == 'tag-edit-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
 
-        //Here we can check, if profile data can be extracted from eauth provider attributes
-        if (!isset($model->name) && isset(LilyModule::instance()->session->data->name))
-            $model->name = LilyModule::instance()->session->data->name;
-        if (!isset($model->sex) && isset(LilyModule::instance()->session->data->sex))
-            $model->sex = LilyModule::instance()->session->data->sex;
-        if (!isset($model->birthday) && isset(LilyModule::instance()->session->data->birthday))
-            $model->setBirthdayByTimestamp(LilyModule::instance()->session->data->birthday);
-
-        if (isset($_POST['Profile'])) {
-            $model->attributes = $_POST['Profile'];
+        if (isset($_POST['TagForm'])) {
+            $model->attributes = $_POST['TagForm'];
             if ($model->validate()) {
-                if ($model->save()) {
-                    Yii::app()->user->setFlash('profile', 'Profile saved.');
-
-                    //If this page was shown because of initialization process, we should take user to the next step after model saving
-                    if(LilyModule::instance()->userIniter->isStarted){
-                        LilyModule::instance()->userIniter->nextStep();
-                    }
-                }
+                $model->saveToUser($uid);
+                Yii::app()->user->setFlash('tag.save.success', 'Tags were successfully saved');
             }
+        }else{
+            $model->tag1 = implode(', ',Tag1::model()->getTagsByUser($uid));
+            $model->tag2 = implode(', ',Tag2::model()->getTagsByUser($uid));
+            $model->tag3 = implode(', ',Tag3::model()->getTagsByUser($uid));
         }
+
         $this->render('edit', array('model' => $model));
     }
 

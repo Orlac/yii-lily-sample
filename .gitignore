@@ -1,3 +1,7 @@
 *~
 /protected/runtime
 /assets
+/protected/extensions
+/protected/modules
+/protected/framework
+/.idea

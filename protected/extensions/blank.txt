@@ -1,0 +1,3 @@
+This is a blank file, created just to make sure it's parent folder is in repo.
+
+Into this folder (extensions) you should put yii-mail, eauth, eoauth and loid extension folders.

@@ -1,4 +1,18 @@
 <?php
+/**
+ * SiteController class file.
+ *
+ * @author George Agapov <george.agapov@gmail.com>
+ * @link https://github.com/georgeee/yii-lily-sample
+ * @license http://www.opensource.org/licenses/bsd-license.php
+ */
+
+/**
+ * SiteController is a controller class.
+ * It simply provides handlers for error, custom and index pages.
+ *
+ * @package application.controllers
+ */
 
 class SiteController extends Controller
 {

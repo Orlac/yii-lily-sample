@@ -16,11 +16,11 @@ $columns = array(
     ),
     array(
         'header' => 'Sex',
-        'value' => '$data->profile->sexOption',
+        'value' => 'isset($data->profile->sexOption)?$data->profile->sexOption:"Not set"',
     ),
     array(
         'header' => 'Birthday',
-        'value' => '$data->profile->birthday',
+        'value' => 'isset($data->profile->birthday)?$data->profile->birthday:"Not set"',
     ),
     array(
         'header' => LilyModule::t('Accounts'),

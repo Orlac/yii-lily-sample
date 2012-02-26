@@ -31,27 +31,7 @@ return array(
 	),
 
 	'modules'=>array(
-        'gii' => array(
-            'class' => 'system.gii.GiiModule',
-            'password' => 'abracadabra',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
-            'ipFilters' => array('127.0.0.1', '::1'),
-        ),
-        'lily' => array(
-			'class' => 'lily.LilyModule',
-			'relations' => array(
-				'profile' => array(
-					'relation' => array(CActiveRecord::HAS_ONE, 'Profile', 'uid'),
-					'onUserMerge' => 'auto', //event - raise event accross the model, auto, callback - execute callback from callback property, null - do nothing
-					'onRegister' => array('profile/edit'), //null isn't required
-				),
-				'tags' => array(
-					'relation' => array(CActiveRecord::MANY_MANY, 'Tag', '{{tag_relation}}(tid, uid)'),
-					'onUserMerge' => 'auto', //event - raise event accross the model, auto, null - do nothing
-				),
-			),
-			'userNameFunction' => array('Profile', 'getUserName'),
-		),
+        'lily' => require( dirname(__FILE__) . '/lily.php'),
 	),
 
     'sourceLanguage' => 'en',

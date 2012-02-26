@@ -4,10 +4,40 @@ CREATE TABLE 'tbl_migration' (
 	"version" varchar(255) NOT NULL PRIMARY KEY,
 	"apply_time" integer
 );
-INSERT INTO "tbl_migration" VALUES('m000000_000000_base',1329929588);
-INSERT INTO "tbl_migration" VALUES('m120131_112629_lily_tables_create',1329929590);
-INSERT INTO "tbl_migration" VALUES('m120206_173608_create_profile_table',1329929590);
-INSERT INTO "tbl_migration" VALUES('m120207_125421_create_user_tag_tables',1329929590);
+INSERT INTO "tbl_migration" VALUES('m000000_000000_base',1330255382);
+INSERT INTO "tbl_migration" VALUES('m120206_173608_sample_tables',1330255382);
+INSERT INTO "tbl_migration" VALUES('m120131_112629_lily_tables_create',1330255383);
+CREATE TABLE 'tbl_profile' (
+	"pid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"uid" integer,
+	"name" varchar(255),
+	"birthday" date,
+	"sex" tinyint(1)
+);
+CREATE TABLE 'tbl_tag1' (
+	"tid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"name" varchar(255)
+);
+CREATE TABLE 'tbl_tag1_relation' (
+	"tid" integer,
+	"uid" integer
+);
+CREATE TABLE 'tbl_tag2' (
+	"tid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"name" varchar(255)
+);
+CREATE TABLE 'tbl_tag2_relation' (
+	"tid" integer,
+	"uid" integer
+);
+CREATE TABLE 'tbl_tag3' (
+	"tid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	"name" varchar(255)
+);
+CREATE TABLE 'tbl_tag3_relation' (
+	"tid" integer,
+	"uid" integer
+);
 CREATE TABLE 'tbl_lily_user' (
 	"uid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	"deleted" integer,
@@ -44,63 +74,8 @@ CREATE TABLE 'tbl_lily_onetime' (
 	"token" varchar(255) NOT NULL,
 	"created" integer
 );
-CREATE TABLE 'tbl_profile' (
-	"pid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	"uid" integer,
-	"name" varchar(255),
-	"birthday" date,
-	"sex" tinyint(1)
-);
-CREATE TABLE 'tbl_tag' (
-	"tid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	"name" varchar(255)
-);
-CREATE TABLE 'tbl_tag_relation' (
-	"tid" integer,
-	"uid" integer
-);
+CREATE UNIQUE INDEX 'tag1_tid_uid' ON 'tbl_tag1_relation' ("tid", "uid");
+CREATE UNIQUE INDEX 'tag2_tid_uid' ON 'tbl_tag2_relation' ("tid", "uid");
+CREATE UNIQUE INDEX 'tag3_tid_uid' ON 'tbl_tag3_relation' ("tid", "uid");
 CREATE UNIQUE INDEX 'service_id' ON 'tbl_lily_account' ("service", "id");
 COMMIT;
-
-/**
- * Database schema required by CDbAuthManager.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @link http://www.yiiframework.com/
- * @copyright Copyright &copy; 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- * @since 1.0
- */
-
-drop table if exists 'AuthAssignment';
-drop table if exists 'AuthItemChild';
-drop table if exists 'AuthItem';
-
-create table 'AuthItem'
-(
-   "name"                 varchar(64) not null,
-   "type"                 integer not null,
-   "description"          text,
-   "bizrule"              text,
-   "data"                 text,
-   primary key ("name")
-);
-
-create table 'AuthItemChild'
-(
-   "parent"               varchar(64) not null,
-   "child"                varchar(64) not null,
-   primary key ("parent","child"),
-   foreign key ("parent") references 'AuthItem' ("name") on delete cascade on update cascade,
-   foreign key ("child") references 'AuthItem' ("name") on delete cascade on update cascade
-);
-
-create table 'AuthAssignment'
-(
-   "itemname"             varchar(64) not null,
-   "userid"               varchar(64) not null,
-   "bizrule"              text,
-   "data"                 text,
-   primary key ("itemname","userid"),
-   foreign key ("itemname") references 'AuthItem' ("name") on delete cascade on update cascade
-);

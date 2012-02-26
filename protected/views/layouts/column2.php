@@ -29,11 +29,12 @@
         ));
         $this->endWidget();
         $this->beginWidget('zii.widgets.CPortlet', array(
-            'title' => 'Profile',
+            'title' => 'Profile & Tags',
         ));
         $this->widget('zii.widgets.CMenu', array(
             'items' => array(
                 array('label' => 'Edit profile', 'url' => array('/profile/edit')),
+                array('label' => 'Edit tags', 'url' => array('/tag/edit')),
             ),
             'htmlOptions' => array('class' => 'operations'),
         ));

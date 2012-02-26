@@ -1,7 +1,17 @@
 <?php
 /**
+ * Controller class file.
+ *
+ * @author George Agapov <george.agapov@gmail.com>
+ * @link https://github.com/georgeee/yii-lily-sample
+ * @license http://www.opensource.org/licenses/bsd-license.php
+ */
+
+/**
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
+ *
+ * @package application.components
  */
 class Controller extends CController
 {

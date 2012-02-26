@@ -14,6 +14,19 @@ $this->widget('zii.widgets.CDetailView', array(
             'label' => 'Sex',
             'value' => $data->profile->sexOption,
         ),
+
+        array(
+            'label' => 'First tag',
+            'value' => implode(', ',Tag1::model()->getTagsByUser($data->uid)),
+        ),
+        array(
+            'label' => 'Second tag',
+            'value' => implode(', ',Tag2::model()->getTagsByUser($data->uid)),
+        ),
+        array(
+            'label' => 'Third tag',
+            'value' => implode(', ',Tag3::model()->getTagsByUser($data->uid)),
+        ),
 //        'deleted',
 //        'active',
 //        'inited',
