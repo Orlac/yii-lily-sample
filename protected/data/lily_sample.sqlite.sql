@@ -4,9 +4,10 @@ CREATE TABLE 'tbl_migration' (
 	"version" varchar(255) NOT NULL PRIMARY KEY,
 	"apply_time" integer
 );
-INSERT INTO "tbl_migration" VALUES('m000000_000000_base',1330255382);
-INSERT INTO "tbl_migration" VALUES('m120206_173608_sample_tables',1330255382);
-INSERT INTO "tbl_migration" VALUES('m120131_112629_lily_tables_create',1330255383);
+INSERT INTO "tbl_migration" VALUES('m000000_000000_base',1332174342);
+INSERT INTO "tbl_migration" VALUES('m120206_173608_sample_tables',1332174342);
+INSERT INTO "tbl_migration" VALUES('m120131_112629_lily_tables_create',1332174343);
+INSERT INTO "tbl_migration" VALUES('m120319_143048_session_table_uid_field',1332174343);
 CREATE TABLE 'tbl_profile' (
 	"pid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	"uid" integer,
@@ -67,7 +68,7 @@ CREATE TABLE 'tbl_lily_session' (
 	"data" blob,
 	"ssid" varchar(255) NOT NULL,
 	"created" integer
-);
+, "uid" integer);
 CREATE TABLE 'tbl_lily_onetime' (
 	"tid" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	"uid" integer,

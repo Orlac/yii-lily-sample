@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.58, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.1.61, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: lily_sample
 -- ------------------------------------------------------
--- Server version	5.1.58-1ubuntu1
+-- Server version	5.1.61-0ubuntu0.11.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -109,6 +109,7 @@ CREATE TABLE `tbl_lily_session` (
   `data` blob,
   `ssid` varchar(255) NOT NULL,
   `created` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,7 +168,7 @@ CREATE TABLE `tbl_migration` (
 
 LOCK TABLES `tbl_migration` WRITE;
 /*!40000 ALTER TABLE `tbl_migration` DISABLE KEYS */;
-INSERT INTO `tbl_migration` VALUES ('m000000_000000_base',1330255383),('m120206_173608_sample_tables',1330255383),('m120131_112629_lily_tables_create',1330255384);
+INSERT INTO `tbl_migration` VALUES ('m000000_000000_base',1332174343),('m120206_173608_sample_tables',1332174344),('m120131_112629_lily_tables_create',1332174344),('m120319_143048_session_table_uid_field',1332174345);
 /*!40000 ALTER TABLE `tbl_migration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-26 17:23:04
+-- Dump completed on 2012-03-19 22:25:45
